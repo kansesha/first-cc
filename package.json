@@ -1,0 +1,50 @@
+{
+  "name": "pomodoro-timer",
+  "productName": "番茄钟",
+  "version": "1.0.0",
+  "description": "一个简洁的桌面番茄钟",
+  "author": "pomodoro",
+  "main": "main.js",
+  "scripts": {
+    "prestart": "node scripts/make-icon.js",
+    "start": "electron .",
+    "icon": "node scripts/make-icon.js",
+    "dist": "electron-builder --win"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^33.0.0",
+    "electron-builder": "^25.1.8"
+  },
+  "allowScripts": {
+    "electron@33.4.11": true
+  },
+  "build": {
+    "appId": "com.example.pomodoro",
+    "productName": "番茄钟",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "renderer/**/*",
+      "assets/**/*",
+      "package.json"
+    ],
+    "win": {
+      "icon": "assets/icon.ico",
+      "target": ["nsis", "portable"]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "shortcutName": "番茄钟",
+      "artifactName": "Pomodoro-Setup-${version}.${ext}"
+    },
+    "portable": {
+      "artifactName": "Pomodoro-${version}.${ext}"
+    }
+  }
+}
